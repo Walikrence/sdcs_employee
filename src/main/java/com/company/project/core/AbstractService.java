@@ -36,8 +36,8 @@ public abstract class AbstractService<T> implements Service<T> {
         mapper.deleteByPrimaryKey(id);
     }
 
-    public void deleteByIds(String ids) {
-        mapper.deleteByIds(ids);
+    public int deleteByIds(String ids) {
+        return mapper.deleteByIds(ids);
     }
 
     public void update(T model) {
