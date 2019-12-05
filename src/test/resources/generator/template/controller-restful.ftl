@@ -1,4 +1,4 @@
-package ${basePackage}.web;
+package ${basePackage}.controller;
 
 import ${basePackage}.core.Result;
 import ${basePackage}.core.ResultGenerator;
@@ -8,6 +8,8 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import tk.mybatis.mapper.entity.Condition;
+import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -22,15 +24,33 @@ public class ${modelNameUpperCamel}Controller {
     private ${modelNameUpperCamel}Service ${modelNameLowerCamel}Service;
 
     @PostMapping("/add")
-    public Result add(@RequestBody ${modelNameUpperCamel} ${modelNameLowerCamel}) {
-        ${modelNameLowerCamel}Service.save(${modelNameLowerCamel});
-        return ResultGenerator.genSuccessResult();
+    public Result add( ${modelNameUpperCamel} ${modelNameLowerCamel}) {
+        if(${modelNameLowerCamel}Service.save(${modelNameLowerCamel})){
+            return ResultGenerator.genSuccessResult();
+        } else {
+            return ResultGenerator.genFailResult("失败");
+        }
+    }
+
+    @PostMapping("/addMany")
+    public Result addMany(List<${modelNameUpperCamel}> ${modelNameLowerCamel}s) {
+        if (${modelNameLowerCamel}Service.save(${modelNameLowerCamel}s)>0) {
+            return ResultGenerator.genSuccessResult();
+        } else {
+            return ResultGenerator.genFailResult("失败");
+        }
     }
 
     @DeleteMapping("/del")
-    public Result delete(@RequestParam Integer id) {
-        ${modelNameLowerCamel}Service.deleteById(id);
-        return ResultGenerator.genSuccessResult();
+    public Result delete(Integer id) {
+        if (id==null){
+            return ResultGenerator.genFailResult("id为空");
+        }
+        if (${modelNameLowerCamel}Service.deleteById(id)) {
+            return ResultGenerator.genSuccessResult();
+        } else {
+            return ResultGenerator.genFailResult("失败");
+        }
     }
     @DeleteMapping("/deleteMany")
     public Result deleteByIds(String ids) {
@@ -44,24 +64,40 @@ public class ${modelNameUpperCamel}Controller {
         }
     }
 
-    @PutMapping("/update")
-    public Result update(@RequestBody ${modelNameUpperCamel} ${modelNameLowerCamel}) {
-        ${modelNameLowerCamel}Service.update(${modelNameLowerCamel});
-        return ResultGenerator.genSuccessResult();
+    @PatchMapping("/update")
+    public Result update(${modelNameUpperCamel} ${modelNameLowerCamel}) {
+        if (${modelNameLowerCamel}.getId()==null){
+            return ResultGenerator.genFailResult("id为空");
+        }
+        if (${modelNameLowerCamel}Service.update(${modelNameLowerCamel})) {
+            return ResultGenerator.genSuccessResult();
+        } else {
+            return ResultGenerator.genFailResult("失败");
+        }
     }
 
     @GetMapping("/detail")
     public Result detail(Integer id) {
+        if (id==null){
+            return ResultGenerator.genFailResult("id为空");
+        }
         ${modelNameUpperCamel} ${modelNameLowerCamel} = ${modelNameLowerCamel}Service.findById(id);
         return ResultGenerator.genSuccessResult(${modelNameLowerCamel});
     }
 
     @GetMapping("/list")
-    public Result list(@RequestParam(defaultValue = "0") Integer page,
-                        @RequestParam(defaultValue = "0") Integer size) {
+    public Result<PageInfo<${modelNameUpperCamel}>> list(@RequestParam(defaultValue = "0") Integer page,
+                                                         @RequestParam(defaultValue = "10") Integer size,
+                                                         String name) {
         PageHelper.startPage(page, size);
-        List<${modelNameUpperCamel}> list = ${modelNameLowerCamel}Service.findAll();
-        PageInfo pageInfo = new PageInfo(list);
+        Condition condition = new Condition(${modelNameUpperCamel}.class);
+        Example.Criteria criteria = condition.createCriteria();
+        if (StringUtils.isNotEmpty(name)) {
+            criteria.andLike("name", "%" + name + "%");
+        }
+        condition.setOrderByClause("id desc");
+        List<${modelNameUpperCamel}> list = ${modelNameLowerCamel}Service.findByCondition(condition);
+        PageInfo<${modelNameUpperCamel}> pageInfo = new PageInfo<>(list);
         return ResultGenerator.genSuccessResult(pageInfo);
     }
 }
