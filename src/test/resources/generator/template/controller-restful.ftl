@@ -18,13 +18,25 @@ import java.util.List;
 * Created by ${author} on ${date}.
 */
 @RestController
-@RequestMapping("${baseRequestMapping}")
+@RequestMapping("${modelNameLowerCamel}")
 public class ${modelNameUpperCamel}Controller {
     @Resource
     private ${modelNameUpperCamel}Service ${modelNameLowerCamel}Service;
 
     @PostMapping("/add")
     public Result add( ${modelNameUpperCamel} ${modelNameLowerCamel}) {
+        //检查是否指定id
+        if (null != ${modelNameLowerCamel}.getId()) {
+            //id是否已存在
+            Condition condition = new Condition(${modelNameUpperCamel}.class);
+            Example.Criteria criteria = condition.createCriteria();
+            criteria.andEqualTo("id", ${modelNameLowerCamel}.getId());
+            List<${modelNameUpperCamel}> list = ${modelNameLowerCamel}Service.findByCondition(condition);
+            if (!list.isEmpty()) {
+                return ResultGenerator.genFailResult("id已存在");
+            }
+        }
+        //没有指定id
         if(${modelNameLowerCamel}Service.save(${modelNameLowerCamel})){
             return ResultGenerator.genSuccessResult();
         } else {
