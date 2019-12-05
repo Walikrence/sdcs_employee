@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.dao.EnterpriseMapper">
+  <resultMap id="BaseResultMap" type="com.company.project.model.Enterprise">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="enterprise_name" jdbcType="VARCHAR" property="enterpriseName" />
+    <result column="valid_certificate_number" jdbcType="VARCHAR" property="validCertificateNumber" />
+    <result column="register_fundation" jdbcType="VARCHAR" property="registerFundation" />
+    <result column="business_type" jdbcType="VARCHAR" property="businessType" />
+    <result column="enterprise_size" jdbcType="VARCHAR" property="enterpriseSize" />
+    <result column="enterprise_property" jdbcType="VARCHAR" property="enterpriseProperty" />
+    <result column="personnel_authority" jdbcType="VARCHAR" property="personnelAuthority" />
+    <result column="enterprise_location_province" jdbcType="VARCHAR" property="enterpriseLocationProvince" />
+    <result column="enterprise_location_city" jdbcType="VARCHAR" property="enterpriseLocationCity" />
+    <result column="enterprise_location_district" jdbcType="VARCHAR" property="enterpriseLocationDistrict" />
+    <result column="postcode" jdbcType="VARCHAR" property="postcode" />
+    <result column="enterprise_fax" jdbcType="VARCHAR" property="enterpriseFax" />
+    <result column="enterprise_email" jdbcType="VARCHAR" property="enterpriseEmail" />
+    <result column="superior_enterprise" jdbcType="VARCHAR" property="superiorEnterprise" />
+    <result column="enterprise_detail_address" jdbcType="VARCHAR" property="enterpriseDetailAddress" />
+    <result column="enterprise_phone" jdbcType="VARCHAR" property="enterprisePhone" />
+    <result column="enterprise_web_page" jdbcType="VARCHAR" property="enterpriseWebPage" />
+    <result column="contact_person_name" jdbcType="VARCHAR" property="contactPersonName" />
+    <result column="contact_person_teltphone" jdbcType="VARCHAR" property="contactPersonTeltphone" />
+    <result column="contact_person_phone" jdbcType="VARCHAR" property="contactPersonPhone" />
+    <result column="contact_peron_email" jdbcType="VARCHAR" property="contactPeronEmail" />
+    <result column="is_review" jdbcType="VARCHAR" property="isReview" />
+  </resultMap>
+</mapper>

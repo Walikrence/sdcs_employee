@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.dao.ApplyPlaceMapper">
+  <resultMap id="BaseResultMap" type="com.company.project.model.ApplyPlace">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="hr_id" jdbcType="INTEGER" property="hrId" />
+    <result column="theme" jdbcType="VARCHAR" property="theme" />
+    <result column="meeting_time" jdbcType="TIMESTAMP" property="meetingTime" />
+    <result column="meeting_duration" jdbcType="VARCHAR" property="meetingDuration" />
+    <result column="place_name" jdbcType="VARCHAR" property="placeName" />
+    <result column="main_agenda" jdbcType="VARCHAR" property="mainAgenda" />
+    <result column="job_and_number" jdbcType="VARCHAR" property="jobAndNumber" />
+    <result column="car_license_number_enter_school" jdbcType="VARCHAR" property="carLicenseNumberEnterSchool" />
+    <result column="enterprise_contact" jdbcType="VARCHAR" property="enterpriseContact" />
+    <result column="contact_phone" jdbcType="VARCHAR" property="contactPhone" />
+    <result column="is_review" jdbcType="VARCHAR" property="isReview" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+  </resultMap>
+</mapper>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.dao.AlumniMapper">
+  <resultMap id="BaseResultMap" type="com.company.project.model.Alumni">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="enterprise_id" jdbcType="INTEGER" property="enterpriseId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="department_postion" jdbcType="VARCHAR" property="departmentPostion" />
+    <result column="graduate_major" jdbcType="VARCHAR" property="graduateMajor" />
+    <result column="graduate_year" jdbcType="VARCHAR" property="graduateYear" />
+    <result column="contact_phone" jdbcType="VARCHAR" property="contactPhone" />
+    <result column="contact_email" jdbcType="VARCHAR" property="contactEmail" />
+  </resultMap>
+</mapper>

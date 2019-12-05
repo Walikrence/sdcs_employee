@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.dao.JobOfferInfomationMapper">
+  <resultMap id="BaseResultMap" type="com.company.project.model.JobOfferInfomation">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="hr_id" jdbcType="INTEGER" property="hrId" />
+    <result column="theme" jdbcType="VARCHAR" property="theme" />
+    <result column="job_type" jdbcType="VARCHAR" property="jobType" />
+    <result column="apply_start_time" jdbcType="TIMESTAMP" property="applyStartTime" />
+    <result column="apply_end_time" jdbcType="TIMESTAMP" property="applyEndTime" />
+    <result column="job_post" jdbcType="VARCHAR" property="jobPost" />
+    <result column="is_review" jdbcType="VARCHAR" property="isReview" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+  </resultMap>
+</mapper>
