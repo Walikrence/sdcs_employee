@@ -29,6 +29,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.stereotype.Component;
+import org.springframework.web.filter.HttpPutFormContentFilter;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
@@ -110,7 +112,7 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
     //解决跨域问题
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**");
+        registry.addMapping("/**").allowedMethods("GET", "POST", "PATCH", "DELETE", "OPTIONS");
     }
 
     //添加拦截器
@@ -202,4 +204,7 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
 //
 //        return ip;
 //    }
+
 }
+
+
